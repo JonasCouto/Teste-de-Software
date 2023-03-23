@@ -1,0 +1,23 @@
+{
+  "name": "teste-de-software",
+  "version": "1.0.0",
+  "description": "Teste de Software simula um formulário que envia os dados do front-end para o back-end por um arquivo JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonasCouto/Teste-de-Software.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonasCouto/Teste-de-Software/issues"
+  },
+  "homepage": "https://github.com/JonasCouto/Teste-de-Software#readme",
+  "devDependencies": {
+    "cypress": "^12.8.1"
+  }
+}
