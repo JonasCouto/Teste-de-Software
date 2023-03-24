@@ -60,6 +60,8 @@ Cypress.Commands.add('addRecord', (user) => {
         .should('have.value', user.inquiry)
 
 
+        cy.contains('button','Submit')
+        .click()
         
     })
     
