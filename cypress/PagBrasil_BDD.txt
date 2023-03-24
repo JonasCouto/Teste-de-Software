@@ -1,0 +1,193 @@
+Observações consideraveis na elaboração desta metodologia BDD (Cucumber/Gherkin)
+
+* A ideia de utilizar este formato de teste foi a utilização de boas praticas da qualidade de software.
+* Evitar teste redundantes que possa poluir o cenários de testes
+* Utilização de casos genéricos e dinâmicos para respostas positivas e negativas em formato de objetos.
+* Utilizar massa de dados.
+ 
+
+Funcionalidade: Envio de formulário para duvidas 
+
+Cenário: Realizar a submissão do formulário para dúvidas. 
+
+Dado que estou preenchendo o formulário de dúvidas PagBrasil 
+E preencho todos os campos com caracteres validos 
+Quando clico no botão de “Submit” 
+Então o formulário é encaminhado com sucesso 
+
+Exemplos: 
+{
+	test case: Formulario enviado com sucesso
+	"nome": "Jonas",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?", 
+}
+
+Exemplos: 
+{
+	test case: Formulario enviado com sucesso enviando campos no limites de caracteres
+	"nome": "JonasonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJ",
+	"email": "jonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@testjonas@test.com", 
+	"company": "PagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPa",
+	"website: "www.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasi",
+	"phone": "51 99999799351",
+	"inquiry": "Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como", 
+}
+
+
+--------------------------------------------------------------------------------------------------------
+
+Funcionalidade: Envio de formulário com informações pessoais e dúvida 
+
+Cenário: Realizar a submissão do formulário para dúvidas 
+Dado que estou preenchendo o formulário de dúvidas PagBrasil  
+Quando preencho algum campo com caracteres a mais que o permitido 
+Então recebo uma mensagem da erro <expected_result>
+E o formulário não é criado
+Exemplo: 
+{
+	test case: Campo Nome com caracteres excendente
+	"nome": "JonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJonasJ",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?", 
+	"expected result":"campo Nome com numero de caracteres maior que 256"
+}
+
+Exemplo: 
+{
+	test case: Campo Email com caracteres excendente  
+	"nome": "Jonas Couto",
+	"email": "jonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@test.comjonas@testjonas@test.comj", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?",
+	"expected result":"campo Email com numero de caracteres maior que 151"
+}
+Exemplo: 
+{
+	test case: Campo Company com caracteres excendente
+	"nome": "Jonas Couto",
+	"email": "jonas@test.com", 
+	"company": "PagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPagBrasilPag",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?",
+	"expected result":"campo Company com numero de caracteres maior que 201"
+}
+Exemplo: 
+{
+	test case: Campo Website com caracteres excendente
+	"nome": "Jonas Couto",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.comwww.pagbrasil.",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?",
+	"expected result":"campo Website com numero de caracteres maior que 201"
+}
+Exemplo: 
+{
+	test case: Campo Phone com caracteres excendente
+	"nome": "Jonas Couto",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 99999799351 9",
+	"inquiry": "Como faço para realizar uma ação?",
+	"expected result":"campo Phone com numero de caracteres maior que 16"
+}
+Exemplo: 
+{
+	test case: Campo Inquiry com caracteres excendente
+	"nome": "Jonas Couto",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 99999799351",
+	"inquiry": "Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como faço para realizar uma ação?Como f",
+	"expected result":"campo Inquiry com numero de caracteres maior que 501"
+}
+
+
+Cenário: Realizar a submissão do formulário para dúvidas. 
+
+Dado que estou preenchendo o formulário de dúvidas PagBrasil 
+E preencho algum campos com caracteres invalido 
+Quando clico no botão de “Submit” 
+Então recebo uma mensagem da erro 
+E o formulário não é criado
+
+Exemplos: 
+{
+	test case: Campo Nome contendo caracteres invalido
+	"nome": "Jonas*%",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?", 
+}
+Exemplos: 
+{
+	test case: Campo Email contendo caracteres invalido
+	"nome": "Jonas",
+	"email": "jonas test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?", 
+}
+Exemplos: 
+{
+	test case: Campo Company contendo caracteres invalido
+	"nome": "Jonas",
+	"email": "jonas@test.com", 
+	"company": "@PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?", 
+}
+Exemplos: 
+{
+	test case: Campo Website contendo caracteres invalido
+	"nome": "Jonas",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.*pagbrasil*.com",
+	"phone": "51 999997993",
+	"inquiry": "Como faço para realizar uma ação?", 
+}
+Exemplos: 
+{
+	test case: Campo Phone contendo caracteres invalido
+	"nome": "Jonas",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993ABC",
+	"inquiry": "Como faço para realizar uma ação?", 
+}
+Exemplos: 
+{
+	test case: Campo Inquiry contendo caracteres invalido
+	"nome": "Jonas",
+	"email": "jonas@test.com", 
+	"company": "PagBrasil",
+	"website: "www.pagbrasil.com",
+	"phone": "51 999997993",
+	"inquiry": "#@%Como faço para realizar uma ação?", 
+}
+
+
+
+
+
+
+
